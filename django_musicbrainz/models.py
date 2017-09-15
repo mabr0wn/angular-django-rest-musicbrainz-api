@@ -4,6 +4,8 @@ from __future__ unicdoe_literals
 from django.db import models # import the models functions to add to our models below.
 
 CHARACTER_VARYING_MAX_LENGTH = 10000 # Defining the max characters we can have in our strings, max is 1 GB.
+
+# they are text fields acting as Minature wikis.
 # this links area, artist, label, place, recording, release, release_group, and work
 # They all have a corresponding _annotation table that links entities of that type of entry to the main Annotation below.
 # The main annotation table which contains the actual text of the annotation, along with the changelog and the
@@ -91,3 +93,18 @@ class AreaAlias(models.Model):
     class Meta:
       managed = False
       db_table = 'area_alias'
+# defining the possible values for ForeignKey 'type'
+class AreaAliasType(models.Model):
+    id = models.IntegerField(primary_key=True)
+    name = models.TextField()
+    parent = models.ForeignKey(
+        'self', db_column='parent', blank=True, null=True)
+    child_order = models.IntegerField()
+    description = models.TextField(blank=True)
+    
+    class Meta:
+        managed = False
+        db_table = 'area_alias_type'
+# describing the middle table between annotation and Area.  which allows them to communicate to each other.        
+class AreaAnnotation(models.Model):
+  area = models.ForeignKey(Area, db_column)
