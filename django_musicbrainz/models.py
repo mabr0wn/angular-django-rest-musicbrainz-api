@@ -66,4 +66,17 @@ class Area(models.Model):
     class Meta:
         managed = False
         db_table = 'area'
-
+ 
+# alternate names or mispellings.
+class AreaAlias(models.Model):
+    id = models.IntegerField(primary_key=True)
+    area = models.ForeignKey(Area, db_column='area')
+    name = models.CharField(max_length=CHARACTER_VARYING_MAX_LENGTH)
+    locale = models.TextField(blank=True)
+    edits_pending = models.IntegerField()
+    last_updated = models.DateTimeField(blank=True, null=True)
+    # for type possible values are Country, Subdivision, Country, Municipality, City, District, Island
+    type = models.ForeignKey(
+          'AreaAliasType', db_column='type', blank=True, null=True)
+    sort_name = models.CharField(max_length=CHARACTER_VARYING_MAX_LENGTH)
+    begin_date_year = models.SmallIntegerField(blank=True, null=True)
