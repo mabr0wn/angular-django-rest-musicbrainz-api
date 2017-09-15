@@ -80,3 +80,14 @@ class AreaAlias(models.Model):
           'AreaAliasType', db_column='type', blank=True, null=True)
     sort_name = models.CharField(max_length=CHARACTER_VARYING_MAX_LENGTH)
     begin_date_year = models.SmallIntegerField(blank=True, null=True)
+    begin_date_month = models.SmallIntegerField(blank=True, null=True)
+    begin_date_day = models.SmallIntegerField(blank=True, null=True)
+    end_date_year = models.SmallIntegerField(blank=True, null=True)
+    end_date_month = models.SmallIntegerField(blank=True, null=True)
+    end_date_day = models.SmallIntegerField(blank=True, null=True)
+    primary_for_locale = models.BooleanField()
+    ended = models.BooleanField()
+    
+    class Meta:
+      managed = False
+      db_table = 'area_alias'
