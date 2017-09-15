@@ -20,4 +20,16 @@ class Annotation(models.Model):
   class Meta:
       managed = False
       db_table = 'annotation'
+# used for external application, we have a id for identitfy this table,       
+class Application(models.Model):
+    id = models.IntegerField(primary_key=True)
+    owner = models.ForeignKey('Editor', db_column='owner')
+    name = models.TextField()
+    oauth_id = models.TextField(unique=True)
+    oauth_secret = models.TextField()
+    oauth_redirect_uri = models.TextField(blank=True)
+    
+    class Meta:
+      managed = False
+      db_table = 'application'
 
