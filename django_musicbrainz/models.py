@@ -107,4 +107,11 @@ class AreaAliasType(models.Model):
         db_table = 'area_alias_type'
 # describing the middle table between annotation and Area.  which allows them to communicate to each other.        
 class AreaAnnotation(models.Model):
-  area = models.ForeignKey(Area, db_column)
+  area = models.ForeignKey(Area, db_column='area', primary_key=True)
+  annotation = models.ForeignKey(Annotation, db_column='annotation')
+  
+  # unique together allows a set of fields names to be take togther, but they must be unique.
+  class Meta:
+    managed = False
+    db_tabel = 'area_annotation'
+    unique_together = ('area', 'annotation')
