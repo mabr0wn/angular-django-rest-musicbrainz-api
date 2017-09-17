@@ -115,3 +115,4 @@ class AreaAnnotation(models.Model):
     managed = False
     db_tabel = 'area_annotation'
     unique_together = ('area', 'annotation')
+    
