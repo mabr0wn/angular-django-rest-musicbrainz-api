@@ -133,7 +133,7 @@ class Artist(models.Model):
     gid = models.IntegerField()
     name = models.CharField(max_length=255, blank=True, null=True)
     begin_date_year = models.SmallIntegerField(blank=True, null=True)
-    begin_date_month = models.SmallIntegerField(blank-True, null=True)
+    begin_date_month = models.SmallIntegerField(blank=True, null=True)
     begin_date_day = models.SmallIntegerField(blank=True, null=True)
     end_date_year = mdoels.SmallIntegerField(blank=True, null=True)
     end_date_month = models.SmallIntegerField(blank=True, null=True)
@@ -142,7 +142,7 @@ class Artist(models.Model):
     type = models.ForeignKey(
            'ArtistType', db_column='type', blank=True, null=True)
     gender = models.ForeignKey('Gender', db_column='gender', blank=True, null=True)
-    area = models.ForeignKey(Area, db_column='area', blank=True, null=True)
+    area = models.ForeignKey(Area, db_column=Area, blank=True, null=True)
     begin_area = models.CharField(max_length=255, blank=True, null=True)
     ended_area = models.CharField(max_length=255, blank=True, null=True)
     comment = models.TextField(blank=True, null=True)
