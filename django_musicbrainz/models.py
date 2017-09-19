@@ -153,7 +153,7 @@ class Artist(models.Model):
       managed = False # may change to true
       db_table = 'artist'
       
-      
+# Alias to Artist, would define a nickname or mispelling of some sort.      
 class ArtistAlias(models.Model):
     id = models.IntegerField(primary_key=True)
     artist = models.ForeignKey(Artist, db_column=True, blank=True, null=True)
@@ -175,5 +175,20 @@ class ArtistAlias(models.Model):
     class Meta:
       managed = False
       db_table = 'artistalias'
+    
+# This is the Alias type for Artist basically we will need to use this to define the type of artist.
+class ArtistAliasType(models.Model):
+    id = models.IntegerField()
+    name = models.TextField()
+    parent = models.ForeignKey(
+              'self', db_columm='parent', blank=True, null=True)
+    child_order = models.IntegerField()
+    description = models.TextField(blank=True)
+    
+    class Meta:
+      managed = False
+      db_table = 'artist_alias_type'
+      
+ 
     
     
