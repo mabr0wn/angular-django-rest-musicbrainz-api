@@ -116,3 +116,64 @@ class AreaAnnotation(models.Model):
     db_tabel = 'area_annotation'
     unique_together = ('area', 'annotation')
     
+class AreaType(models.Model):
+    id = models.IntegerField()
+    name = models.TextField()
+    parent = models.ForeignKey(
+         'self', db_column='parent', blank=True, null=True)
+    child_order = models.IntegerField()
+    description = models.TextField(blank=True)
+    
+    class Meta:
+      managed = False
+      db_table = 'area_type'
+      
+class Artist(models.Model):
+    id = models.IntegerField(primary_key=True)
+    gid = models.IntegerField()
+    name = models.CharField(max_length=255, blank=True, null=True)
+    begin_date_year = models.SmallIntegerField(blank=True, null=True)
+    begin_date_month = models.SmallIntegerField(blank-True, null=True)
+    begin_date_day = models.SmallIntegerField(blank=True, null=True)
+    end_date_year = mdoels.SmallIntegerField(blank=True, null=True)
+    end_date_month = models.SmallIntegerField(blank=True, null=True)
+    end_date_day = models.SmallIntegerField(blank=True, null=True)
+    ended = models.DatetimeField(blank=True, null=True)
+    type = models.ForeignKey(
+           'ArtistType', db_column='type', blank=True, null=True)
+    gender = models.ForeignKey('Gender', db_column='gender', blank=True, null=True)
+    area = models.ForeignKey(Area, db_column='area', blank=True, null=True)
+    begin_area = models.CharField(max_length=255, blank=True, null=True)
+    ended_area = models.CharField(max_length=255, blank=True, null=True)
+    comment = models.TextField(blank=True, null=True)
+    edits_pending = models.IntegerField(blank=True, null=True)
+    last_updated = models.DateTimeField(blank=True, null=True)
+    
+    class Meta:
+      managed = False # may change to true
+      db_table = 'artist'
+      
+      
+class ArtistAlias(models.Model):
+    id = models.IntegerField(primary_key=True)
+    artist = models.ForeignKey(Artist, db_column=True, blank=True, null=True)
+    sort_name = models.CharField(max_length=255, blank=True, null=True)
+    locale = models.TextField()
+    edits_pending = IntegerField(blank=True, null=True) # how many edits are pending for artist alias
+    last_updated = DateTimeField()
+    type = models.ForeignKey(
+           'ArtistAliasType', db_column='type', blank=true, null=True)
+    begin_date_year = models.SmallIntegerField(blank=True, null=True)
+    begin_date_month = models.SmallIntegerField(blank=True, null=True)
+    begin_date_day = models.SmallIntegerField(blank=True, null=True)
+    ended_date_year = models.SmallIntegerField(blank=True, null=True)
+    ended_date_month = models.SmallIntegerField(blank=True, null=True)
+    ended_date_day = models.SmallIntegerField(blank=True, null=True)
+    ended = models.DateTimeField(blank=True, null=True)
+    primary_for_locale = models.BooleanField()
+    
+    class Meta:
+      managed = False
+      db_table = 'artistalias'
+    
+    
