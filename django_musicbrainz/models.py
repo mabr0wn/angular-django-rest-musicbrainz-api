@@ -3,7 +3,22 @@ from __future__ unicdoe_literals
 
 from django.db import models # import the models functions to add to our models below.
 
+import musicbrainzngs as mb # import the full mb DB from ngs
+
 CHARACTER_VARYING_MAX_LENGTH = 10000 # Defining the max characters we can have in our strings, max is 1 GB.
+
+# make new a model called Album to represent the artist's Album
+class Album(models.Model):
+  name = models.CharField(max_length=255)
+  artist = models.CharField(max_length=255)
+  slug = models.SlugField() #instead of having /1 we will see /album
+  
+  class Meta:
+    ordering = ['name']
+    
+  def __str__(self):
+    return self.name
+  
 
 # they are text fields acting as Minature wikis.
 # this links area, artist, label, place, recording, release, release_group, and work
