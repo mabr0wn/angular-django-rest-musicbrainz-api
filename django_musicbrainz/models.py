@@ -19,6 +19,47 @@ class Album(models.Model):
   def __str__(self):
     return self.name
   
+  
+    
+    
+    begin_date_year = models.SmallIntegerField(blank=True, null=True)
+    begin_date_month = models.SmallIntegerField(blank=True, null=True)
+    begin_date_day = models.SmallIntegerField(blank=True, null=True)
+    end_date_year = mdoels.SmallIntegerField(blank=True, null=True)
+    end_date_month = models.SmallIntegerField(blank=True, null=True)
+    end_date_day = models.SmallIntegerField(blank=True, null=True)
+    ended = models.DatetimeField(blank=True, null=True)
+    type = models.ForeignKey(
+           'ArtistType', db_column='type', blank=True, null=True)
+    gender = models.ForeignKey('Gender', db_column='gender', blank=True, null=True)
+    area = models.ForeignKey(Area, db_column='area', blank=True, null=True)
+    begin_area = models.CharField(max_length=255, blank=True, null=True)
+    ended_area = models.CharField(max_length=255, blank=True, null=True)
+    comment = models.TextField(blank=True, null=True)
+    edits_pending = models.IntegerField(blank=True, null=True)
+    last_updated = models.DateTimeField(blank=True, null=True)
+    
+    class Meta:
+      managed = False # may change to true
+      db_table = 'artist'
+  
+  
+Class Artist(models.Model):
+  id = models.IntegerField(primary_key=True)
+  gid = models.IntegerField()
+  track = models.ForeignKey('Track') # may implement blank, null
+  name = models.CharField(max_length=255, blank=True, null=True)
+  instrument = models.CharField(max_length=255, blank=True, null=True)
+  start_time = models.CharField(max_length=20, blank=True, null=True)
+  end_time = models.CharField(max_length=20, blank=True, null=True)
+  begin_
+  slug = models.SlugField()
+  
+  class Meta:
+    ordering = ['track', 'start-time'] # order by track start time.
+    
+  def get_absolute_url(self):
+    return reverse('')
 
 # they are text fields acting as Minature wikis.
 # this links area, artist, label, place, recording, release, release_group, and work
@@ -143,30 +184,7 @@ class AreaType(models.Model):
       managed = False
       db_table = 'area_type'
       
-class Artist(models.Model):
-    id = models.IntegerField(primary_key=True)
-    gid = models.IntegerField()
-    name = models.CharField(max_length=255, blank=True, null=True)
-    begin_date_year = models.SmallIntegerField(blank=True, null=True)
-    begin_date_month = models.SmallIntegerField(blank=True, null=True)
-    begin_date_day = models.SmallIntegerField(blank=True, null=True)
-    end_date_year = mdoels.SmallIntegerField(blank=True, null=True)
-    end_date_month = models.SmallIntegerField(blank=True, null=True)
-    end_date_day = models.SmallIntegerField(blank=True, null=True)
-    ended = models.DatetimeField(blank=True, null=True)
-    type = models.ForeignKey(
-           'ArtistType', db_column='type', blank=True, null=True)
-    gender = models.ForeignKey('Gender', db_column='gender', blank=True, null=True)
-    area = models.ForeignKey(Area, db_column='area', blank=True, null=True)
-    begin_area = models.CharField(max_length=255, blank=True, null=True)
-    ended_area = models.CharField(max_length=255, blank=True, null=True)
-    comment = models.TextField(blank=True, null=True)
-    edits_pending = models.IntegerField(blank=True, null=True)
-    last_updated = models.DateTimeField(blank=True, null=True)
-    
-    class Meta:
-      managed = False # may change to true
-      db_table = 'artist'
+
       
 # Alias to Artist, would define a nickname or mispelling of some sort.      
 class ArtistAlias(models.Model):
