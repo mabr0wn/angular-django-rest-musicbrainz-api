@@ -54,6 +54,7 @@ class Artist(models.Model):
   def get_absolute_url(self): # add the reverse lookup for the url will add to the urls.py soon.
     return reverse('artist_detail_view', kwargs={'album': self.track.album.slug, 'track': self.track.slug,
                                                  'artist': self.slug})
+  
 
 # they are text fields acting as Minature wikis.
 # this links area, artist, label, place, recording, release, release_group, and work
