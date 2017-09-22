@@ -21,20 +21,10 @@ class Album(models.Model):
   
   
     
+
+   
     
-    begin_date_year = models.SmallIntegerField(blank=True, null=True)
-    begin_date_month = models.SmallIntegerField(blank=True, null=True)
-    begin_date_day = models.SmallIntegerField(blank=True, null=True)
-    end_date_year = mdoels.SmallIntegerField(blank=True, null=True)
-    end_date_month = models.SmallIntegerField(blank=True, null=True)
-    end_date_day = models.SmallIntegerField(blank=True, null=True)
-    ended = models.DatetimeField(blank=True, null=True)
-    type = models.ForeignKey(
-           'ArtistType', db_column='type', blank=True, null=True)
-    gender = models.ForeignKey('Gender', db_column='gender', blank=True, null=True)
-    area = models.ForeignKey(Area, db_column='area', blank=True, null=True)
-    begin_area = models.CharField(max_length=255, blank=True, null=True)
-    ended_area = models.CharField(max_length=255, blank=True, null=True)
+
     comment = models.TextField(blank=True, null=True)
     edits_pending = models.IntegerField(blank=True, null=True)
     last_updated = models.DateTimeField(blank=True, null=True)
@@ -52,7 +42,21 @@ Class Artist(models.Model):
   instrument = models.CharField(max_length=255, blank=True, null=True)
   start_time = models.CharField(max_length=20, blank=True, null=True)
   end_time = models.CharField(max_length=20, blank=True, null=True)
-  begin_
+  begin_date_year = models.SmallIntegerField(blank=True, null=True)
+  begin_date_month = models.SmallIntegerField(blank=True, null=True)
+  begin_date_day = models.SmallIntegerField(blank=True, null=True)
+  end_date_year = models.SmallIntegerField(blank=True, null=True)
+  end_date_month = models.SmallIntegerField(blank=True, null=True)
+  end_date_day = models.SmallIntegerField(blank=True, null=True)
+  ended = models.DateTimeField(blank=True, null=True)
+  type = models.ForeignKey(Type, db_column='type', blank=True, null=True)
+  gender = models.ForeignKey('Gender', blank=True, null=True)
+  area = models.ForeignKey(Area, blank=True, null=True)
+  begin_area = models.CharField(max_length=255, blank=True, null=True)
+  ended_area = models.CharField(max_length=255, blank=True, null=True)
+  comment = models.TextField(blank=True, null=True)
+  edits_pending = models.IntegerField(blank=true, null=True)
+  last
   slug = models.SlugField()
   
   class Meta:
