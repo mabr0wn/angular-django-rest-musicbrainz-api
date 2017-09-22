@@ -19,22 +19,9 @@ class Album(models.Model):
   def __str__(self):
     return self.name
   
+  # will sort later.
   
-    
-
-   
-    
-
-    comment = models.TextField(blank=True, null=True)
-    edits_pending = models.IntegerField(blank=True, null=True)
-    last_updated = models.DateTimeField(blank=True, null=True)
-    
-    class Meta:
-      managed = False # may change to true
-      db_table = 'artist'
-  
-  
-Class Artist(models.Model):
+class Artist(models.Model):
   id = models.IntegerField(primary_key=True)
   gid = models.IntegerField()
   track = models.ForeignKey('Track') # may implement blank, null
@@ -56,10 +43,12 @@ Class Artist(models.Model):
   ended_area = models.CharField(max_length=255, blank=True, null=True)
   comment = models.TextField(blank=True, null=True)
   edits_pending = models.IntegerField(blank=true, null=True)
-  last
+  last_update = models.DateTimeField(blank=True, null=True)
   slug = models.SlugField()
   
   class Meta:
+    managed = True
+    db_table = 'artist'
     ordering = ['track', 'start-time'] # order by track start time.
     
   def get_absolute_url(self):
