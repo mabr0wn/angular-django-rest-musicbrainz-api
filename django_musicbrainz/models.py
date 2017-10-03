@@ -166,6 +166,16 @@ class AreaAnnotation(models.Model):
     managed = False
     db_tabel = 'area_annotation'
     unique_together = ('area', 'annotation')
+
+class AreaGidRedirect(models.Model):
+  gid = models.TextField(primary_key=True)
+  new = models.ForeignKey(Area)
+  created = models.DateTimeField(blank=True, null=True)
+  
+  class Meta:
+    managed = False
+    db_table = 'area_gid_redirect'
+  
     
 class AreaType(models.Model):
     id = models.IntegerField()
@@ -216,6 +226,15 @@ class ArtistAliasType(models.Model):
     class Meta:
       managed = False
       db_table = 'artist_alias_type'
+
+class ArtistAnnonation(models.Model):
+  artist = models.ForeignKey(Artist, db_column='artist', primary_key=True)
+  annotation = models.ForeignKey(Annotation, db_column='annotation')
+  
+  class Meta:
+    managed = False
+    db_table = 'artist_annotation'
+    unique_together = ('artist', 'annotation')
       
  
     
