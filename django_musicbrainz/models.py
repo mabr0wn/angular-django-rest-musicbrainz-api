@@ -235,7 +235,42 @@ class ArtistAnnonation(models.Model):
     managed = False
     db_table = 'artist_annotation'
     unique_together = ('artist', 'annotation')
-      
- 
+
+class ArtistCredit(models.Model):
+  id = models.IntegerField(primary_key=True)
+  name = models.Charfield(max_length=CHARACTER_VARYING_MAX_LENGTH)
+  artist_count = models.smallIntegerField()
+  ref_count = models.IntegerField(blank=True, null=True)
+  created = models.DateTimeField(blank=True, null=True)
+  
+  artists = model.ManyToManyField(
+      'Artist', through='ArtistCreditName')
+  
+  class Meta:
+    managed = False
+    db_table = 'artist_credit'
+
+class ArtistCreditName(models.model):
+  artist_credit = models.ForeignKey(
+      ArtistCredit, db_column='artist_credit', primary_key=True)
+  position = models.SmallIntegerField()
+  artist = models.ForeignKey(Artist, db_column='artist')
+  name = models.CharField(max_length=CHARACTER_VARYING_MAX_LENGTH)
+  join_phase = models.TextField()
+  
+  class Meta:
+    managed = False
+    db_table = 'aritst_credit_name'
+    unique_together = ('artist_credit', 'position') # position the artist will be in
+
+class ArtistDeletion(models.Model):
+    gid = models.TextField(primary_key=True)
+    last_known_name = models.CharField(max_length=CHARACTER_VARYING_MAX_LENGTH)
+    last_known_comment = models.TextField()
+    deleted_at = models.DateTimeField()
+    
+    class Meta:
+      managed = False
+      db_table = 'artist_deletion'
     
     
