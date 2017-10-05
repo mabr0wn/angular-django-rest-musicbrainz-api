@@ -321,3 +321,16 @@ class ArtistMeta(models.Model):
   class Meta:
     managed = False
     db_table = 'artist_meta'
+
+# allows to rate an artist    
+class ArtistRatingRaw(models.Model):
+  artist = models.ForeignKey(Artist, db_column='artist', primary_key=True)
+  editor = models.ForeignKey('Editor', db_column='editor')
+  rating = models.SmallIntegerField()
+  
+  class Meta:
+    managed = False
+    db_table = 'artist_rating_raw'
+    unique_together = ('artist', 'editor')
+    
+
