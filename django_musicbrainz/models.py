@@ -368,3 +368,6 @@ class ArtistType(models.Model):
     db_table = 'artist_type'
 
     
+class AutoeditorElection(models.Model):
+  id = models.IntegerField(primary_key=True)
+  candidtate
