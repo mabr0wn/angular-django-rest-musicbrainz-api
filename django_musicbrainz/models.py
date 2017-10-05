@@ -344,4 +344,13 @@ class ArtistTag(models.Model):
     managed = False
     db_table = 'artist_tag'
     unique_together = ('artist', 'tag')
-
+    
+class ArtistTagRaw(models.Model):
+  artist = models.ForeignKey(Artist, db_column='artist', primary_key=True)
+  editor = models.ForeignKey('Editor', db_column='editor')
+  tag = models.ForeignKey('Tag', db_column='tag')
+  
+  class Meta:
+    managed = False
+    db_table = 'artist_tag_raw'
+    unique_together = 'artist', 'editor', 'tag'
