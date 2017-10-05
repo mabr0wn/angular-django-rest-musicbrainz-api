@@ -272,5 +272,14 @@ class ArtistDeletion(models.Model):
     class Meta:
       managed = False
       db_table = 'artist_deletion'
+
+class ArtistGidRedirect(models.Model):
+  gid = models.TextField(primary_key=True)
+  new = models.ForeignKey(Artist)
+  created = models.DateTimeField(blank=True, null=True)
+  
+  class Meta:
+    managed = False
+    db_table = 'artist_gid_redirect'
     
     
