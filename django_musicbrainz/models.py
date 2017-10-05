@@ -299,4 +299,15 @@ class ArtistIpi(models.Model):
     db_table = 'artist_ipi'
     unique_together = ('artist', 'ipi')
     
-    
+# Identifies an Artist
+class ArtistIsni(models.Model):
+  artist = models.ForeignKey(
+      Artist, db_column='artist', primary_key=True)
+  isni = models.CharField(max_length=16)
+  edits_pending = models.IntegerField()
+  create = models.DateTimeField(blank=True, null=True)
+  
+  class Meta:
+    managed = False
+    db_table = 'artist_isni'
+    unique_together = ('artist', 'isni')
