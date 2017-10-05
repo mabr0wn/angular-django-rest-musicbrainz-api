@@ -311,3 +311,13 @@ class ArtistIsni(models.Model):
     managed = False
     db_table = 'artist_isni'
     unique_together = ('artist', 'isni')
+
+# Meta data for the artist
+class ArtistMeta(models.Model):
+  id = models.ForeignKey(Artist, db_column='id', primary_key=True)
+  rating = models.SmallIntegerField(blank=True, null=True)
+  rating_count = models.IntegerField(blank=True, null=True)
+  
+  class Meta:
+    managed = False
+    db_table = 'artist_meta'
