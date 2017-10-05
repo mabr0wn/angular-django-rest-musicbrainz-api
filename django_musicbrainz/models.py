@@ -282,4 +282,21 @@ class ArtistGidRedirect(models.Model):
     managed = False
     db_table = 'artist_gid_redirect'
     
+"""
+The Interested Parties Information Code (IPI) is an identifying number assigned in 
+the CISAC database to each Interested Party in musical rights management.
+"""
+
+class ArtistIpi(models.Model):
+  artist = models.ForeignKey(
+      Artist, db_column='artist', primary_key=True)
+  ipi = models.CharField(max_length=11)
+  edits_pending = models.IntegerField()
+  created = models.DateTimeField(blank=True, null=True)
+  
+  class Meta:
+    managed = False
+    db_table = 'artist_ipi'
+    unique_together = ('artist', 'ipi')
+    
     
