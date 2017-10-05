@@ -354,3 +354,17 @@ class ArtistTagRaw(models.Model):
     managed = False
     db_table = 'artist_tag_raw'
     unique_together = 'artist', 'editor', 'tag'
+
+class ArtistType(models.Model):
+  id = models.IntegerField(primary_key=True)
+  name = models.CharField(max_length=255)
+  parent = models.ForeignKey(
+    'self', db_column='parent', blank=True, null=True)
+  child_order = models.IntegerField()
+  description = models.Textfield(blank=True)
+  
+  class Meta:
+    managed = False
+    db_table = 'artist_type'
+
+    
