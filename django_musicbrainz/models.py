@@ -332,5 +332,16 @@ class ArtistRatingRaw(models.Model):
     managed = False
     db_table = 'artist_rating_raw'
     unique_together = ('artist', 'editor')
-    
+ 
+# Tag a artist such as a comment
+class ArtistTag(models.Model):
+  artist = models.ForeignKey(Artist, db_column='artist', primary_key=True)
+  tag = models.ForeignKey('Tag', db_column='tag')
+  count = models.IntegerField()
+  last_updated = models.DateTimeField(blank=True, null=True)
+  
+  class Meta:
+    managed = False
+    db_table = 'artist_tag'
+    unique_together = ('artist', 'tag')
 
