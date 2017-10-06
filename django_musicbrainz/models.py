@@ -395,4 +395,30 @@ class AutoeditorElection(models.Model):
   class Meta:
     managed = False
     db_table = 'autoeditor_election'
-    
+
+class AutoeditorElectionVote(models.Model):
+  id = models.IntegerField(primary_key=True)
+  autoeditor_election = models.ForeignKey(
+      AutoeditorElection, db _column='autoeditor_election')
+  voter = models.ForeignKey('Editor', db_column='voter')
+  vote = models.IntegerField()
+  vote_time = models.DateTimeField()
+  
+  class Meta:
+    managed = False
+    db_table = 'autoeditor_election_vote'
+ 
+# Cd table of contents
+class Cdtoc(models.Model):
+  id = models.IntegerField(primary_key=True)
+  discid = models.CharField(unique=True, max_length=28)
+  # another DB with music meta data
+  freedb_id = models.CharField(max_length=8)
+  track_count = models.IntegerField()
+  track_offset = models.BooleanField()
+  degraded = models.BooleanField()
+  created = models.DateTimeField(blank=True, null=True)
+  
+  class Meta:
+    managed = False
+    db_table = 'cdtoc'
