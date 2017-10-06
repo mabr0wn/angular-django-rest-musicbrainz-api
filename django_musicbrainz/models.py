@@ -370,4 +370,12 @@ class ArtistType(models.Model):
     
 class AutoeditorElection(models.Model):
   id = models.IntegerField(primary_key=True)
-  candidtate
+  # who the honor is
+  candidtate = models.ForeignKey(
+    'Editor', db_column='canditate',
+    related_name='candiate_autoeditorelection_set')
+  proposer = models.ForeignKey(
+    'Editor', db_column='proposer',
+    related_name='proposer_autoeditorelection_set')
+  
+    )
