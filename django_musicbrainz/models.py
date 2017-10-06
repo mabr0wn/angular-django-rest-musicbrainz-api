@@ -377,5 +377,22 @@ class AutoeditorElection(models.Model):
   proposer = models.ForeignKey(
     'Editor', db_column='proposer',
     related_name='proposer_autoeditorelection_set')
+  seconder_1 = models.ForeignKey(
+    'Editor', db_column='seconder_1',
+    related_name='seconder_1_autoeditorelection_set',
+    blank=True, null=True)
+  seconder_2 = models.ForeignKey(
+    'Editor', db_column='seconder_2',
+    related_column='seconder_2_autoeditorelection_set',
+    blank=True, null=True)
+  status = models.IntegerField()
+  yes_votes = models.IntgerField()
+  no_votes = models.IntegerField()
+  proposed_time = models.DateTimeField()
+  open_time = models.DateTimeField(blank=True, null=True)
+  close_time = models.DateTimeField(blank=True, null=True)
   
-    )
+  class Meta:
+    managed = False
+    db_table = 'autoeditor_election'
+    
