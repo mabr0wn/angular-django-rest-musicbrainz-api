@@ -451,7 +451,22 @@ class Edit(models.Model):
   id = models.IntegerField(primary_key=True)
   editor = models.ForeignKey('Editor', db_column='editor')
   type = models.SmallIntegerField()
+  # to modify what you need to edit.
   data = models.TextField()
+  yes_votes = models.IntegerField()
+  no_votes = models.IntegerField()
+  autoedit = models.SmallIntegerField()
+  open_time = models.DateTimeField(blank=True, null=True)
+  close_time = models.DateTimeField(blank=True, null=True)
+  expired_time = models.DateTimeField()
+  language = models.ForeignKey(
+      'Language', db_column='language', blank=True, null=True)
+  quality = models.SmallIntegerField()
+  
+  class Meta:
+    managed = False
+    db_table = 'Edit'
+    
   
     
   
