@@ -515,4 +515,31 @@ class EditNote(models.Model):
   class Meta:
     managed = False
     db_table = 'edit_note'
+ 
+class EditPlace(models.Model):
+  edit = models.ForeignKey(Edit, db_column='edit', primary_key=True)
+  place = models.ForeignKey('Place', db_column='place')
+  
+  class Meta:
+    managed = False
+    db_table = 'edit_place'
+    unique_together = ('edit', 'place')
+
+class EditRecording(models.Model):
+  edit = models.ForeignKey(Edit, db_column='edit', primary_key=True)
+  recording = models.ForeignKey('Recording', db_column='recording')
+  
+  class Meta:
+    managed = False
+    db_table = 'edit_release'
+    unique_together = ('edit', 'recording')
+    
+class EditRelease(models.Model):
+  edit = models.ForeignKey(Edit, db_column='edit', primary_key=True)
+  release = models.ForeignKey('Release', db_column='release')
+  
+  class Meta:
+    managed = False
+    db_table = 'edit_release'
+    unique_together = ('edit', 'release')
   
