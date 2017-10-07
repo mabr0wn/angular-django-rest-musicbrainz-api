@@ -467,6 +467,24 @@ class Edit(models.Model):
     managed = False
     db_table = 'Edit'
     
+class EditArea(models.Model):
+  edit = models.ForeignKey(Edit, db_column='edit', primary_key=True)
+  area = models.ForeignKey(Area, db_column='area')
   
+  class Meta:
+    managed = False
+    db_table = 'edit_area'
+    unique_together = ('edit', 'area')
+   
+EditArtist(models.Model):
+  edit = models.ForeignKey(Edit, db_column='edit', primary_key=True)
+  artist = models.ForeignKey(Artist, db_column='artist')
+  status = models.SmallIntegerField()
+  
+  class Meta:
+    managed = False
+    db_table = 'edit_artist'
+    unique_together = ('edit', 'artist')
+
     
   
