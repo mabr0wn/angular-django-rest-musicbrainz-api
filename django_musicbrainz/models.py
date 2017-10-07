@@ -422,3 +422,22 @@ class Cdtoc(models.Model):
   class Meta:
     managed = False
     db_table = 'cdtoc'
+ 
+class CdtocRaw(models.Model):
+  id = models.InteferField(primary_key=True)
+  release = models.ForeignKey('ReleaseRaw', db_column='release')
+  # discid is a small Program, written in C++
+  discid = models.CharField(max_length=28)
+  track_count = models.integerField()
+  # this follows the data area on the CD.
+  leadout_offset = models.IntegerField()
+  # this must follow the data area after each track.
+  track_offset = models.TextField()
+  degraded = models.BooleanField()
+  created = models.DateTimeField(blank=True, null=True)
+  
+  class Meta:
+    managed = False
+    db_table = 'cdtoc'
+    
+  
