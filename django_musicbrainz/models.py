@@ -476,7 +476,7 @@ class EditArea(models.Model):
     db_table = 'edit_area'
     unique_together = ('edit', 'area')
    
-EditArtist(models.Model):
+class EditArtist(models.Model):
   edit = models.ForeignKey(Edit, db_column='edit', primary_key=True)
   artist = models.ForeignKey(Artist, db_column='artist')
   status = models.SmallIntegerField()
@@ -485,6 +485,34 @@ EditArtist(models.Model):
     managed = False
     db_table = 'edit_artist'
     unique_together = ('edit', 'artist')
-
     
+class EditInstrument(models.Model):
+  edit = models.ForeignKey(Edit, db_column='edit', primary_key=True)
+  instrument = models.ForeignKey('Instrument', db_colunmn='instrument')
+  
+  class Meta:
+    managed = False
+    db_table = 'edit_instrument'
+    unique_together = ('edit', 'instrument')
+
+class EditLabel(models.Model):
+  edit = models.ForeignKey(Edit, db_column='edit', primary_key=True)
+  label = models.ForeignKey('Label', db_column='label')
+  status = models.SmallIntegerField()
+  
+  class Meta:
+    managed = False
+    db_table = 'edit_label'
+    unique_together = ('edit', 'label')
+    
+class EditNote(models.Model):
+  id = models.IntegerField(primary_key=True)
+  editor = models.ForeignKey('Editor', db_column='editor')
+  edit = models.ForeignKey(Edit, db_column='edit')
+  text = models.TextField()
+  post_time = models.DateTimeField(blank=True, null=True)
+  
+  class Meta:
+    managed = False
+    db_table = 'edit_note'
   
