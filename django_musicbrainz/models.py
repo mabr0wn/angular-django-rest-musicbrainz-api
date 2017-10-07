@@ -439,5 +439,19 @@ class CdtocRaw(models.Model):
   class Meta:
     managed = False
     db_table = 'cdtoc'
+
+class CountryArea(models.Model):
+  area = models.ForeignKey(Area, db_column='area', primary_key=True)
+  
+  class Meta:
+    manged = False
+    db_table = 'country_area'
+
+class Edit(models.Model):
+  id = models.IntegerField(primary_key=True)
+  editor = models.ForeignKey('Editor', db_column='editor')
+  type = models.SmallIntegerField()
+  data = models.TextField()
+  
     
   
