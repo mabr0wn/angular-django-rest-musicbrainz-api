@@ -571,3 +571,11 @@ class EditUrl(models.Model):
         db_table = 'edit_url'
         unique_together = ('edit', 'url')        
   
+class EditWork(models.Model):
+    edit = models.ForeignKey(Edit, db_column='edit', primary_key=True)
+    work = models.ForeignKey('Work', db_column='work')
+
+    class Meta:
+        managed = False
+        db_table = 'edit_work'
+        unique_together = ('edit', 'work')
