@@ -690,3 +690,13 @@ class EditorSubscribeArtist(models.Model):
     class Meta:
         managed = False
         db_table = 'editor_subscribe_artist'
+
+class EditorSubscribeArtistDeleted(models.Model):
+    editor = models.ForeignKey(Editor, db_column='editor', primary_key=True)
+    gid = models.ForeignKey(ArtistDeletion, db_column='gid')
+    deleted_by = models.ForeignKey(Edit, db_column='deleted_by')
+
+    class Meta:
+        managed = False
+        db_table = 'editor_subscribe_artist_deleted'
+        unique_together = ('editor', 'gid')        
