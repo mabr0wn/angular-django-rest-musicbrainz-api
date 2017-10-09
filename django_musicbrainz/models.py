@@ -542,4 +542,14 @@ class EditRelease(models.Model):
     managed = False
     db_table = 'edit_release'
     unique_together = ('edit', 'release')
+
+class EditReleaseGroup(models.Model):
+    edit = models.ForeignKey(Edit, db_column='edit', primary_key=True)
+    release_group = models.ForeignKey(
+        'ReleaseGroup', db_column='release_group')
+
+    class Meta:
+        managed = False
+        db_table = 'edit_release_group'
+        unique_together = ('edit', 'release_group')    
   
