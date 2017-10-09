@@ -553,3 +553,12 @@ class EditReleaseGroup(models.Model):
         db_table = 'edit_release_group'
         unique_together = ('edit', 'release_group')    
   
+class EditSeries(models.Model):
+    edit = models.ForeignKey(Edit, db_column='edit', primary_key=True)
+    series = models.ForeignKey('Series', db_column='series')
+
+    class Meta:
+        managed = False
+        db_table = 'edit_series'
+        unique_together = ('edit', 'series')
+  
