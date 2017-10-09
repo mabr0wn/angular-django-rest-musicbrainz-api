@@ -579,3 +579,45 @@ class EditWork(models.Model):
         managed = False
         db_table = 'edit_work'
         unique_together = ('edit', 'work')
+class Editor(models.Model):
+    id = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=64)
+    privs = models.IntegerField(blank=True, null=True)
+    email = models.CharField(max_length=64, blank=True)
+    website = models.CharField(max_length=255, blank=True)
+    bio = models.TextField(blank=True)
+    member_since = models.DateTimeField(blank=True, null=True)
+    email_confirm_date = models.DateTimeField(blank=True, null=True)
+    last_login_date = models.DateTimeField(blank=True, null=True)
+    edits_accepted = models.IntegerField(blank=True, null=True)
+    edits_rejected = models.IntegerField(blank=True, null=True)
+    auto_edits_accepted = models.IntegerField(blank=True, null=True)
+    edits_failed = models.IntegerField(blank=True, null=True)
+    last_updated = models.DateTimeField(blank=True, null=True)
+    birth_date = models.DateField(blank=True, null=True)
+    gender = models.ForeignKey(
+        'Gender', db_column='gender', blank=True, null=True)
+    area = models.ForeignKey(Area, db_column='area', blank=True, null=True)
+    password = models.CharField(max_length=128)
+    ha1 = models.CharField(max_length=32)
+    deleted = models.BooleanField()
+
+    artists_subscribed = models.ManyToManyField(
+        'Artist', through='EditorSubscribeArtist')
+    artists_watched = models.ManyToManyField(
+        'Artist', through='EditorWatchArtist')
+    artists_deleted = models.ManyToManyField(
+        'ArtistDeletion', through='EditorSubscribeArtistDeleted')
+    labels_deleted = models.ManyToManyField(
+        'LabelDeletion', through='EditorSubscribeLabelDeleted')
+    languages = models.ManyToManyField('Language', through='EditorLanguage')
+    release_group_types_watched = models.ManyToManyField(
+        'ReleaseGroupPrimaryType', through='EditorWatchReleaseGroupType')
+    release_status_watched = models.ManyToManyField(
+        'ReleaseStatus', through='EditorWatchReleaseStatus')
+    series_deleted = models.ManyToManyField(
+        'SeriesDeletion', through='EditorSubscribeSeriesDeleted')
+
+    class Meta:
+        managed = False
+        db_table = 'editor'
