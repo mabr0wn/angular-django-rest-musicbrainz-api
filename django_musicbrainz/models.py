@@ -644,7 +644,8 @@ class EditorCollectionRelease(models.Model):
     class Meta:
         managed = False
         db_table = 'editor_collection_release'
-        unique_together = ('collection', 'release')       
+        unique_together = ('collection', 'release')    
+        
 class EditorLanguage(models.Model):
     editor = models.ForeignKey(Editor, db_column='editor', primary_key=True)
     language = models.ForeignKey('Language', db_column='language')
@@ -654,6 +655,7 @@ class EditorLanguage(models.Model):
         managed = False
         db_table = 'editor_language'
         unique_together = ('editor', 'language')
+        
 class EditorOauthToken(models.Model):
     id = models.IntegerField(primary_key=True)
     editor = models.ForeignKey(Editor, db_column='editor')
@@ -668,6 +670,7 @@ class EditorOauthToken(models.Model):
     class Meta:
         managed = False
         db_table = 'editor_oauth_token'
+        
 class EditorPreference(models.Model):
     id = models.IntegerField(primary_key=True)
     editor = models.ForeignKey(Editor, db_column='editor')
@@ -677,3 +680,13 @@ class EditorPreference(models.Model):
     class Meta:
         managed = False
         db_table = 'editor_preference'
+        
+class EditorSubscribeArtist(models.Model):
+    id = models.IntegerField(primary_key=True)
+    editor = models.ForeignKey(Editor, db_column='editor')
+    artist = models.ForeignKey(Artist, db_column='artist')
+    last_edit_sent = models.ForeignKey(Edit, db_column='last_edit_sent')
+
+    class Meta:
+        managed = False
+        db_table = 'editor_subscribe_artist'
