@@ -645,3 +645,12 @@ class EditorCollectionRelease(models.Model):
         managed = False
         db_table = 'editor_collection_release'
         unique_together = ('collection', 'release')       
+class EditorLanguage(models.Model):
+    editor = models.ForeignKey(Editor, db_column='editor', primary_key=True)
+    language = models.ForeignKey('Language', db_column='language')
+    fluency = models.TextField()
+
+    class Meta:
+        managed = False
+        db_table = 'editor_language'
+        unique_together = ('editor', 'language')
