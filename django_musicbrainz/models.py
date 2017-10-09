@@ -668,3 +668,12 @@ class EditorOauthToken(models.Model):
     class Meta:
         managed = False
         db_table = 'editor_oauth_token'
+class EditorPreference(models.Model):
+    id = models.IntegerField(primary_key=True)
+    editor = models.ForeignKey(Editor, db_column='editor')
+    name = models.CharField(max_length=50)
+    value = models.CharField(max_length=100)
+
+    class Meta:
+        managed = False
+        db_table = 'editor_preference'
