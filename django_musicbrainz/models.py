@@ -654,3 +654,17 @@ class EditorLanguage(models.Model):
         managed = False
         db_table = 'editor_language'
         unique_together = ('editor', 'language')
+class EditorOauthToken(models.Model):
+    id = models.IntegerField(primary_key=True)
+    editor = models.ForeignKey(Editor, db_column='editor')
+    application = models.ForeignKey(Application, db_column='application')
+    authorization_code = models.TextField(blank=True)
+    refresh_token = models.TextField(unique=True, blank=True)
+    access_token = models.TextField(unique=True, blank=True)
+    expire_time = models.DateTimeField()
+    scope = models.IntegerField()
+    granted = models.DateTimeField()
+
+    class Meta:
+        managed = False
+        db_table = 'editor_oauth_token'
