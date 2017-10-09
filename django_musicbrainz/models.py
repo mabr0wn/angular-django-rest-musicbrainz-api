@@ -561,4 +561,13 @@ class EditSeries(models.Model):
         managed = False
         db_table = 'edit_series'
         unique_together = ('edit', 'series')
+
+class EditUrl(models.Model):
+    edit = models.ForeignKey(Edit, db_column='edit', primary_key=True)
+    url = models.ForeignKey('Url', db_column='url')
+
+    class Meta:
+        managed = False
+        db_table = 'edit_url'
+        unique_together = ('edit', 'url')        
   
