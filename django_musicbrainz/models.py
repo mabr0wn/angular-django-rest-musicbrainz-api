@@ -621,3 +621,17 @@ class Editor(models.Model):
     class Meta:
         managed = False
         db_table = 'editor'
+class EditorCollection(models.Model):
+    id = models.IntegerField(primary_key=True)
+    gid = models.TextField(unique=True)
+    editor = models.ForeignKey(Editor, db_column='editor')
+    name = models.CharField(max_length=CHARACTER_VARYING_MAX_LENGTH)
+    public = models.BooleanField()
+    description = models.TextField()
+
+    releases = models.ManyToManyField(
+        'Release', through='EditorCollectionRelease')
+
+    class Meta:
+        managed = False
+        db_table = 'editor_collection'
