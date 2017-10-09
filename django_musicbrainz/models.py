@@ -635,3 +635,13 @@ class EditorCollection(models.Model):
     class Meta:
         managed = False
         db_table = 'editor_collection'
+
+class EditorCollectionRelease(models.Model):
+    collection = models.ForeignKey(
+        EditorCollection, db_column='collection', primary_key=True)
+    release = models.ForeignKey('Release', db_column='release')
+
+    class Meta:
+        managed = False
+        db_table = 'editor_collection_release'
+        unique_together = ('collection', 'release')       
