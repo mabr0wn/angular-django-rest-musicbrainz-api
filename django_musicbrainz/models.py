@@ -711,4 +711,16 @@ class EditorSubscribeCollection(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'editor_subscribe_collection'        
+        db_table = 'editor_subscribe_collection'  
+      
+class EditorSubscribeEditor(models.Model):
+    id = models.IntegerField(primary_key=True)
+    editor = models.ForeignKey(Editor, db_column='editor')
+    subscribed_editor = models.ForeignKey(
+        Editor, db_column='subscribed_editor',
+        related_name='subscribed_editor_set')
+    last_edit_sent = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'editor_subscribe_editor'      
