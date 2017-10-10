@@ -724,3 +724,13 @@ class EditorSubscribeEditor(models.Model):
     class Meta:
         managed = False
         db_table = 'editor_subscribe_editor'      
+
+class EditorSubscribeLabel(models.Model):
+    id = models.IntegerField(primary_key=True)
+    editor = models.ForeignKey(Editor, db_column='editor')
+    label = models.ForeignKey('Label', db_column='label')
+    last_edit_sent = models.ForeignKey(Edit, db_column='last_edit_sent')
+
+    class Meta:
+        managed = False
+        db_table = 'editor_subscribe_label'        
