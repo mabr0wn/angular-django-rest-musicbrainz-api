@@ -734,3 +734,13 @@ class EditorSubscribeLabel(models.Model):
     class Meta:
         managed = False
         db_table = 'editor_subscribe_label'        
+
+class EditorSubscribeLabelDeleted(models.Model):
+    editor = models.ForeignKey(Editor, db_column='editor', primary_key=True)
+    gid = models.ForeignKey('LabelDeletion', db_column='gid')
+    deleted_by = models.ForeignKey(Edit, db_column='deleted_by')
+
+    class Meta:
+        managed = False
+        db_table = 'editor_subscribe_label_deleted'
+        unique_together = ('editor', 'gid')        
