@@ -753,4 +753,14 @@ class EditorSubscribeSeries(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'editor_subscribe_series'        
+        db_table = 'editor_subscribe_series' 
+
+class EditorSubscribeSeriesDeleted(models.Model):
+    editor = models.ForeignKey(Editor, db_column='editor', primary_key=True)
+    gid = models.ForeignKey('SeriesDeletion', db_column='gid')
+    deleted_by = models.ForeignKey(Edit, db_column='deleted_by')
+
+    class Meta:
+        managed = False
+        db_table = 'editor_subscribe_series_deleted'
+        unique_together = ('editor', 'gid')        
