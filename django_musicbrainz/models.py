@@ -699,4 +699,16 @@ class EditorSubscribeArtistDeleted(models.Model):
     class Meta:
         managed = False
         db_table = 'editor_subscribe_artist_deleted'
-        unique_together = ('editor', 'gid')        
+        unique_together = ('editor', 'gid') 
+        
+class EditorSubscribeCollection(models.Model):
+    id = models.IntegerField(primary_key=True)
+    editor = models.ForeignKey(Editor, db_column='editor')
+    collection = models.IntegerField()
+    last_edit_sent = models.IntegerField()
+    available = models.BooleanField()
+    last_seen_name = models.CharField(max_length=255, blank=True)
+
+    class Meta:
+        managed = False
+        db_table = 'editor_subscribe_collection'        
