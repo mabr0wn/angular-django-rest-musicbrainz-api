@@ -744,3 +744,13 @@ class EditorSubscribeLabelDeleted(models.Model):
         managed = False
         db_table = 'editor_subscribe_label_deleted'
         unique_together = ('editor', 'gid')        
+
+class EditorSubscribeSeries(models.Model):
+    id = models.IntegerField(primary_key=True)
+    editor = models.ForeignKey(Editor, db_column='editor')
+    series = models.ForeignKey('Series', db_column='series')
+    last_edit_sent = models.ForeignKey(Edit, db_column='last_edit_sent')
+
+    class Meta:
+        managed = False
+        db_table = 'editor_subscribe_series'        
