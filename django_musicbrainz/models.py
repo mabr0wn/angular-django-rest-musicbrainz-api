@@ -772,4 +772,14 @@ class EditorWatchArtist(models.Model):
     class Meta:
         managed = False
         db_table = 'editor_watch_artist'
-        unique_together = ('artist', 'editor')  
+        unique_together = ('artist', 'editor')
+        
+class EditorWatchPreferences(models.Model):
+    editor = models.ForeignKey(Editor, db_column='editor', primary_key=True)
+    notify_via_email = models.BooleanField()
+    notification_timeframe = models.TextField()
+    last_checked = models.DateTimeField()
+
+    class Meta:
+        managed = False
+        db_table = 'editor_watch_preferences'
