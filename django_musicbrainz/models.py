@@ -764,3 +764,12 @@ class EditorSubscribeSeriesDeleted(models.Model):
         managed = False
         db_table = 'editor_subscribe_series_deleted'
         unique_together = ('editor', 'gid')        
+
+class EditorWatchArtist(models.Model):
+    artist = models.ForeignKey(Artist, db_column='artist', primary_key=True)
+    editor = models.ForeignKey(Editor, db_column='editor')
+
+    class Meta:
+        managed = False
+        db_table = 'editor_watch_artist'
+        unique_together = ('artist', 'editor')  
