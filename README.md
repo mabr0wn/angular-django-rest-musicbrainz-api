@@ -1,4 +1,4 @@
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)]() [![PyPI](https://img.shields.io/pypi/pyversions/Django.svg)]() [![PyPI](https://img.shields.io/pypi/v/nine.svg)]() 
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)]() [![PyPI](https://img.shields.io/pypi/pyversions/Django.svg)]() [![PyPI](https://img.shields.io/pypi/v/nine.svg)]() [![PyPI](https://img.shields.io/pypi/status/Django.svg)]()
 
 django-musicbrainz
 ==================
