@@ -1,3 +1,5 @@
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)]() [![PyPI](https://img.shields.io/pypi/pyversions/Django.svg)]() [![PyPI](https://img.shields.io/pypi/v/nine.svg)]() 
+
 django-musicbrainz
 ==================
 
